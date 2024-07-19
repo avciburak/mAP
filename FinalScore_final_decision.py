@@ -1,8 +1,8 @@
 import os
 
-videos_path="/content/videos/"
+videos_path="/content/drive/MyDrive/videos/"
 mAP_path="/content/Object-Detection-Metrics/"
-detect_root="/content/final_results/"
+detect_root="/content/drive/MyDrive/final_results/"
 #finalscore_mAP_result_path="/content/FinalScore_mAP_results.txt"
 
 
