@@ -9,7 +9,8 @@ if __name__=="__main__":
     files=os.listdir(results_path)
     result_files=[]
     for file in files:
-        result_files.append(file.split("_")[1])
+        file_name=file.split(".")[0]
+        result_files.append(file_name.split("_")[1])
 
 
     for file in result_files:
