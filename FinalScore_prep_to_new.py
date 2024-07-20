@@ -48,12 +48,11 @@ if __name__=="__main__":
         for frame in all_frames:
             bbs[frame]=Sort_Tuple(bbs[frame])
 
-        root="/content/drive/MyDrive/videos"+video+"/color/"
+        root="/content/drive/MyDrive/videos/"+video+"/color/"
         frame_number=len(os.listdir(root))
 
-        output_file="/content/drive/MyDrive/"+video+"/"+video+"_FinalScore_new.txt"
-        g=open(output_file,"w")
-        g.close()
+        output_file="/content/drive/MyDrive/formatted/"+video+"/"+video+"_FinalScore_new.txt"
+        os.system("touch "+output_file)
 
         g=open(output_file,"a")
         for i in range(1,frame_number+1):
