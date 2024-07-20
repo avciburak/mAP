@@ -6,9 +6,10 @@ formatted_path="/content/drive/MyDrive/formatted/"
                 
 if __name__=="__main__":
 
-    result_files=os.listdir(results_path)
-    for file in result_files:
-        file=file.split("_")[1]
+    files=os.listdir(results_path)
+    result_files=[]
+    for file in files:
+        result_files.append(file.split("_")[1])
 
 
     for file in result_files:
