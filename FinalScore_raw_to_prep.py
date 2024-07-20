@@ -1,7 +1,7 @@
 import os
 
-results_path="/content/drive/results/"
-formatted_path="/content/drive/formatted/"
+results_path="/content/drive/MyDrive/results/"
+formatted_path="/content/drive/MyDrive/formatted/"
 
                 
 if __name__=="__main__":
