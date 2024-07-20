@@ -16,6 +16,10 @@ if __name__=="__main__":
     for name,file in zip(result_files,files):
         names_and_files[name]=file
 
+    formatted_folders=os.listdir(formatted_path)
+
+    for folder in formatted_folders:
+        os.system("rm -r "+formatted_path+folder)
 
     for file in result_files:
         os.system("mkdir "+formatted_path+file)
