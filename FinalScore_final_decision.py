@@ -2,7 +2,7 @@ import os
 
 videos_path="/content/drive/MyDrive/videos/"
 mAP_path="/content/Object-Detection-Metrics/"
-detect_root="/content/drive/MyDrive/final_results/"
+detect_root="/content/drive/MyDrive/formatted/"
 #finalscore_mAP_result_path="/content/FinalScore_mAP_results.txt"
 
 
@@ -10,34 +10,31 @@ detect_root="/content/drive/MyDrive/final_results/"
 #IoU function
 def IoU(boxA, boxB):
 # determine the (x, y)-coordinates of the intersection rectangle
-    xA = max(boxA[0], boxB[0])
-    yA = max(boxA[1], boxB[1])
-    xB = min(boxA[2], boxB[2])
-    yB = min(boxA[3], boxB[3])
+  xA = max(boxA[0], boxB[0])
+  yA = max(boxA[1], boxB[1])
+  xB = min(boxA[2], boxB[2])
+  yB = min(boxA[3], boxB[3])
 # compute the area of intersection rectangle
-    interArea = max(0, xB - xA + 1) * max(0, yB - yA + 1)
+  interArea = max(0, xB - xA + 1) * max(0, yB - yA + 1)
 # compute the area of both the prediction and ground-truth
 # rectangles
-    boxAArea = (boxA[2] - boxA[0] + 1) * (boxA[3] - boxA[1] + 1)
-    boxBArea = (boxB[2] - boxB[0] + 1) * (boxB[3] - boxB[1] + 1)
+  boxAArea = (boxA[2] - boxA[0] + 1) * (boxA[3] - boxA[1] + 1)
+  boxBArea = (boxB[2] - boxB[0] + 1) * (boxB[3] - boxB[1] + 1)
 # compute the intersection over union by taking the intersection
 # area and dividing it by the sum of prediction + ground-truth
 # areas - the interesection area
-    iou = interArea / float(boxAArea + boxBArea - interArea)
+  iou = interArea / float(boxAArea + boxBArea - interArea)
 # return the intersection over union value
-    return iou
+  return iou
 
 
 
-if __name__== "_main_":
+if __name__== "__main__":
 
     videos=os.listdir(videos_path)
 
 
-    for file in os.listdir(mAP_path+"/groundtruths/"):
-        os.remove(mAP_path+"/groundtruths/"+file)
-    for file in os.listdir(mAP_path+"/detections/"):
-        os.remove(mAP_path+"/detections/"+file)
+  
 
     #results_file=open(finalscore_mAP_result_path,"a")
     #results_file.write(" ____________________________________________________________________\n")
@@ -46,6 +43,12 @@ if __name__== "_main_":
 
 
     for video in videos:
+
+
+        for file in os.listdir(mAP_path+"/groundtruths/"):
+          os.remove(mAP_path+"/groundtruths/"+file)
+        for file in os.listdir(mAP_path+"/detections/"):
+          os.remove(mAP_path+"/detections/"+file)
 
     
         frame_number=len(os.listdir(videos_path+video+"/color/"))
@@ -109,8 +112,8 @@ if __name__== "_main_":
 
 
         print("Video Name: "+video)
-        print("Video Frame Number: "+frame_number)
-        print("Video Groundtruth Number: "+len(list(gts.keys())))
+        print("Video Frame Number: "+str(frame_number))
+        print("Video Groundtruth Number: "+str(len(list(gts.keys()))))
 
         keys=list(gts.keys())
         ious=[]
@@ -118,22 +121,26 @@ if __name__== "_main_":
             if key in bbs:
                 ious.append(IoU(bbs[key],gts[key]))
 
-        print("Video Total Bounding Box Number: "+len(ious))
+        print("Video Total Bounding Box Number: "+str(len(ious)))
 
         TP=0
         for iou in ious:
             if iou>=0.5:
                 TP+=1
-        print("Video 0.5 IoU. Number of True Positives: "+TP)
+        print("Video 0.5 IoU. Number of True Positives: "+str(TP))
 
         TP=0
         for iou in ious:
             if iou>=0.75:
                 TP+=1
-        print("Video 0.75 IoU. Number of True Positives: "+TP)
+        print("Video 0.75 IoU. Number of True Positives: "+str(TP))
 
-        os.system("python pascalvoc.py -detformat xyrb -gtformat xyrb")
-        os.system("python pascalvoc.py -detformat xyrb -gtformat xyrb -t 0.75")
+        os.system("yes Y | python pascalvoc.py -detformat xyrb -gtformat xyrb")
+        #os.system("python pascalvoc.py -detformat xyrb -gtformat xyrb")
+
+        os.system("yes Y | python pascalvoc.py -detformat xyrb -gtformat xyrb -t 0.75")
+        #os.system("python pascalvoc.py -detformat xyrb -gtformat xyrb -t 0.75")
+        
 
         #results_file.write(" ____________________________________________________________________")
         #results_file.write("|"+video+"           |      |   "+frame_number+"   |   "+len(list(gts.keys()))+"   |   "+ious+"   |   "+TP+"   |")
