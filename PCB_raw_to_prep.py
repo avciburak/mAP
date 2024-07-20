@@ -25,14 +25,14 @@ if __name__=="__main__":
         os.system("mkdir "+formatted_path+file)
 
     for file in result_files:
-        g=open(formatted_path+file+"/"+file+"_FinalScore.txt","w")
+        g=open(formatted_path+file+"/"+file+"_PCB.txt","w")
         g.close()
     
 
 
     for file in result_files:
         f=open(results_path+names_and_files[file],"r")
-        g=open(formatted_path+file+"/"+file+"_FinalScore.txt","a")
+        g=open(formatted_path+file+"/"+file+"_PCB.txt","a")
         for line in f:
             if line[0]!="0":
                 splitted=line.split(",")
@@ -42,7 +42,7 @@ if __name__=="__main__":
                         splitted[2]+","+
                         str(float(splitted[1])+float(splitted[3]))+","+
                         str(float(splitted[2])+float(splitted[4]))+","+
-                        splitted[7])
+                        splitted[5])
             else:
                 g.write("0,0,0,0\n")        
         f.close()
