@@ -42,7 +42,7 @@ if __name__=="__main__":
                         splitted[2]+","+
                         str(float(splitted[1])+float(splitted[3]))+","+
                         str(float(splitted[2])+float(splitted[4]))+","+
-                        splitted[5])
+                        splitted[5]+"\n")
             else:
                 g.write("0,0,0,0\n")        
         f.close()
