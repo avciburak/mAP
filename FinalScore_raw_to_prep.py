@@ -1,16 +1,20 @@
 import os
 
-results_path="/content/drive/MyDrive/results/"
-formatted_path="/content/drive/MyDrive/formatted/"
+results_path="/content/drive/results/"
+formatted_path="/content/drive/formatted/"
 
                 
 if __name__=="__main__":
 
     files=os.listdir(results_path)
     result_files=[]
+    names_and_files={}
     for file in files:
         file_name=file.split(".")[0]
         result_files.append(file_name.split("_")[1])
+
+    for name,file in zip(result_files,files):
+        names_and_files[name]=file
 
 
     for file in result_files:
@@ -23,7 +27,7 @@ if __name__=="__main__":
 
 
     for file in result_files:
-        f=open(results_path+file,"r")
+        f=open(results_path+names_and_files[file],"r")
         g=open(formatted_path+file+"/"+file+"_FinalScore.txt","a")
         for line in f:
             if line[0]!="0":
