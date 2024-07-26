@@ -1,6 +1,6 @@
 import os
 
-results_path="/content/drive/MyDrive/results/"
+results_path="/content/drive/MyDrive/results/" #Sizin dosyalarınız
 formatted_path="/content/drive/MyDrive/formatted/"
 
                 
